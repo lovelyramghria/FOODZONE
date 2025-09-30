@@ -1,0 +1,290 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+           background-color: #ecdddd;
+            color: #fff;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        form input {
+            flex: 1;
+            font-size: 1rem;
+            color: #080808;
+            margin-top: 25px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            outline: none;
+        }
+
+        form button {
+            flex-shrink: 0;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            padding: 10px 20px;
+            background-color: #000;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 25px;
+            margin-right: 2px;
+        }
+
+        form button:hover {
+            background: #27bdff;
+        }
+        h2 {
+            color: black;
+            font-weight: 900;
+            font-size: 38px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+             
+        }
+
+         /* Container for dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* The button */
+    .dropdown button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Dropdown menu content (hidden by default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 6px;
+    }
+
+    /* Links inside dropdown */
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Hover effect */
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Show dropdown */
+    .show {
+      display: block;
+    }
+        .slider {
+            display: flex;
+            flex-wrap: wrap; 
+            border-radius: 20px;
+        }
+
+        /* Slider Styles */
+        .slide {
+            width: 44%;
+            display: flex;
+            margin-left: 20px;
+            align-items: center;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            /* float: left;*/
+            margin-top: 14px
+        }
+
+        .slide img {
+            width: 207px;
+
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 229px;
+            margin-left: 4px;
+        }
+
+        .food-info {
+            margin-left: 93px;
+            padding-right: 11px;
+        }
+
+        .food-info h2 {
+            margin: 10px 0;
+            color: black;
+            font-size: 1.2em;
+        }
+
+        .food-info p {
+            margin: 10px 0;
+            color: black;
+        }
+
+        .food-info .price {
+            color: black;
+            font-size: 1.5rem;
+            font-weight: bold;
+
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(#010342, #1e0ca8);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(#010342, #d3d1e1);
+        }
+
+        /* Media Queries */
+         @media (max-width: 768px) {
+            .slide {
+                flex: 1 1 calc(50% - 20px);
+                max-width: calc(50% - 20px);
+            }
+
+            form input {
+                width: 60%;
+            }
+        }
+ 
+        @media (max-width: 480px) {
+            .slide {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+
+            form {
+                flex-direction: column;
+            }
+
+            form input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            form button {
+                width: 100%;
+            }
+        } 
+ 
+    </style>
+</head>
+
+<body>
+
+    <div class="search_button">
+        <form method="get" action="{% url 'product_query' %}">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search products...">
+            <button type="submit">Search</button>
+            <div class="dropdown">
+                <button type="button" onclick="toggleDropdown()">MENU</button>
+                <div id="dropdownMenu" class="dropdown-content">
+                  <ul>
+                    <li>PIZZA</li>
+                    <li>BURGER</li>
+                    <li>COFFEE</li>
+                  </ul>
+                </div>
+              </div>
+        </form>
+    </div>
+    
+    {% for category in categories %}
+    <h2>{{ category.name }}</h2>
+    <div class="slider">
+        {% for food in category.food.all %}
+        <div class="slide">
+            <img src="{{ food.image.url }}" alt="food">
+            <div class="food-info">
+                <p><b> {{ food.name }} </b></p>
+                <p> {{ food.description }} </p>
+                <p class="price">₹{{ food.price }}</p>
+                <!-- <a class="btn" href=" {% url 'add_to_cart' food.id %}"> add to cart </a> -->
+                 <a href=" {% url 'add_to_cart' food.id %}"><button type="button" class="btn btn-primary btn-sm">add to cart</button> </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+
+    <script>
+        function toggleDropdown() {
+          document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+      
+        // Close dropdown if user clicks outside
+        window.onclick = function(e) {
+          if (!e.target.matches('button')) {
+            let dropdowns = document.getElementsByClassName("dropdown-content");
+            for (let i = 0; i < dropdowns.length; i++) {
+              let openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+      </script>
+    {% endblock %}
+
+
+    
+</body>
+
+</html>
+
+
+
+
+ 

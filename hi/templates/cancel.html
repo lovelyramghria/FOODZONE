@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         body {
+          font-family: Arial, sans-serif;
+          background-color: #f8f9fa;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+      }
+
+      section {
+          max-width: 600px;
+          margin: 50px auto;
+          padding: 20px;
+          background-color: #ffffff;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      p {
+          font-size: 18px;
+          color: #333;
+          margin-bottom: 20px;
+      }
+
+      .actions {
+          margin-top: 20px;
+      }
+
+      .bt {
+          display: inline-block;
+          padding: 12px 24px;
+          font-size: 16px;
+          background-color: #007bff;
+          color: #fff;
+          margin-left:40%;
+          text-decoration: none;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .bt:hover {
+          background-color: #0056b3;
+          transform: translateY(-2px);
+      }
+
+      .bt:active {
+          background-color: #004494;
+          transform: translateY(0);
+      }
+    </style>
+</head>
+<body>
+    <section>
+        <p>Forgot to add something to your cart. shop around and come back to pay!</p>
+        <div class="action">
+            <a href="{% url 'home '%}" class="btn">Exit</a>
+        </div>
+    </section>
+</body>
+</html>

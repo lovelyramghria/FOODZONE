@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <style>
+            body {
+        background-color: #e7dada;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .cntainer {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    
+    .cart {
+        margin-bottom: 20px;
+    }
+    
+    .cart h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .cart table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .cart th, .cart td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        font-size: 14px;
+    }
+    
+    .cart th {
+        background-color: #f2f2f2;
+    }
+    
+    .cart img {
+        max-width: 100px;
+        max-height: 100px;
+        object-fit: cover;
+    }
+    
+    .action {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .action button, .action a {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        margin: 5px;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    
+    .action button:hover, .action a:hover {
+        background-color: #3e8e41;
+    }
+    
+    .pay {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .pay button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    .pay button:hover {
+        background-color: #3e8e41;
+    }
+    
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .cntainer {
+            padding: 15px;
+        }
+    
+        .cart h1 {
+            font-size: 20px;
+        }
+    
+        .cart th, .cart td {
+            font-size: 12px;
+            padding: 6px;
+        }
+    
+        .cart img {
+            max-width: 80px;
+            max-height: 80px;
+        }
+    
+        .action button, .action a, .pay button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        .cart table {
+            font-size: 12px;
+        }
+    
+        .cart img {
+            max-width: 60px;
+            max-height: 60px;
+        }
+    
+        .action button, .action a, .pay button {
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+    }
+    
+    /* Ensure mobile-friendly layout */
+    @media screen and (max-width: 360px) {
+        .cart h1 {
+            font-size: 18px;
+        }
+    
+        .cart th, .cart td {
+            font-size: 10px;
+            padding: 4px;
+        }
+    }
+    </style>
+    
+</head>
+<body>
+    <div class="cntainer">
+        <div class="cart">
+            <h1>MY CART</h1>
+            {% if cart_items %}
+            <table>
+                <tr>
+                    <td> Food</td>
+                    <td>Name </td>
+                    <td> Quantity </td>
+                    <td> Price </td>
+                </tr>
+                {% for cart_item in cart_items %}
+                <tr>
+                   <td> <img src="{{ cart_item.food.image.url }}" alt=""></td>
+                   <td> {{ cart_item.food.name }}</td>
+                   <td> {{ cart_item.quantity }}</td>
+                   <td>${{ cart_item.food.price }}</td>
+                   <td>
+                       <form action="{% url 'remove_from_cart' cart_item.id %}" method="post">
+                           {% csrf_token %}
+                           <button type="submit"class="pay">remove</button>
+                       </form>
+                   </td>
+
+                </tr>
+                {% endfor %}
+                </table>
+                {% else %}
+                <p>your cart is empty </p>
+                {% endif %}
+                <div class="action">
+                    <p>Total: {{ total_price }}</p>
+                    <a href="{% url 'food' %}"> continue shopping</a>
+                    <a  class="pay" href="/pay_now"> Pay now</a>
+                </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout page </title>
+    <script src="https://kit.fontawesome.com/ccdbd762c2.js" crossorigin="anonymous"></script>
+  <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        main{
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .actions{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .actions a{
+            font-size: 1.5rem;
+            color: #007bff;
+        }
+        .actions a:hover{
+            color: #0056b3;
+        }
+        .actions button{
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .actions button:hover{
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <main>
+      <div class="actions">
+        <a href="/cart"><i class="fa-solid fa-circle-chevron-left"></i></a>
+        <h2>Go for a payment...</h2>
+        <form action="{% url 'create-checkout-session' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn-primary" id="checkout-button">Pay Now</button>
+        </form>
+        </div>
+    </main>
+</body>
+</html>         

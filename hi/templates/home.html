@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 881px;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-image: url('/static/images/age.jpg');
+            background-size: cover;    
+            background-repeat: no-repeat;  
+            background-position: center; 
+            color: #fff;
+        }
+  
+        /* Hero Section */
+        .hero {
+            height: 56vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 30px 0px;
+            margin-top: 187px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+
+        form input {
+            width: 65%;
+            font-size: 0.9rem;
+            color: #080808;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            outline: none;
+        }
+
+        form button {
+            cursor: pointer;
+            font-size: 16px;
+            color: aliceblue;
+            padding: 10px 20px;
+            background-color: #000;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #27bdff;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(#010342, #1e0ca8);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(#010342, #d3d1e1);
+        }
+
+        /* Menu Section */
+        .container {
+            max-width: 1200px;
+            margin: 0rem auto;
+            padding: 0px 8px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: #fff;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            padding: 10px;
+            background: #ff6f61;
+            color: #000;
+        }
+
+        .card p {
+            color: #030303;
+            padding: 10px;
+        }
+        .card a{
+            text-decoration: none;
+        }
+ 
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+           
+            
+
+            .intro-line {
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+ 
+            
+        }
+         
+        
+    </style>
+</head>
+
+<body>
+    <section class="hero">
+        <h1 class="animate__animated animate__bounce">Fresh & Tasty Food Delivered</h1>
+        <h1 class="animate__animated animate__bounce">Discover the best food & drinks</h1>
+        <!-- <div class="search_button">
+            <form method="get" action="">
+                <input type="text" name="" value="  " placeholder="Search products...">
+                <button type="submit">Search</button>
+            </form>
+        </div> -->
+    </section>
+    <section class="container">
+        <h2>Our Menu</h2>
+        <div class="grid">
+            <div class="card">
+               <a href="/food"> 
+                <img src="{% static 'images/images.jpg' %}" alt="Burger">
+                <h3>Burger</h3>
+               </a>
+                <p>Delicious and freshly prepared.</p>
+         
+            </div>
+            <div class="card">
+                <a href="/food"> 
+                <img src="{% static 'images/image1.jpg' %}" alt=" pizza">
+                <h3>Pizza</h3>
+            </a>
+                <p>Experience the taste of perfection.</p>
+     
+            </div>
+            <div class="card">
+                <a href="/food"> 
+                <img src="{% static 'images/images (1).jpg' %}" alt="coffee">  
+                <h3>Coffee</h3>  
+            </a>             
+                <p>A treat for your taste buds.</p>
+           
+            </div>
+        </div>
+    </section>
+    
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block 'main' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #fff;
+            color: #000;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            margin: 1rem auto;
+            background-color:#e7dada;
+            border-radius: 20px;
+            max-width: 1200px;
+        }
+
+        .container img  {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 140px 10px 140px 10px;
+            
+        }
+
+        .left {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .left h3 {
+            font-size: 24px;
+        }
+
+        .left p {
+            font-size: 18px;
+            color: black;
+            margin-top: 10px;
+        }
+
+        .video-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background-color: #ecdddd;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 1206px;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container, .container2 {
+                flex-direction: column;
+                text-align: center;
+            }
+            .container img, .container2 img {
+                width: 100%;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="left">
+                <h3 style="color: #ff7f50;">ABOUT US</h3>
+                <h3>Welcome to FOODZOON – A Paradise for Food Lovers!
+                </h3>
+                <p>At FOODZONE , we believe that food is more than just sustenance—it’s an experience, 
+                    a story, and a journey of flavors. Our mission is to bring you the most delicious, 
+                    easy-to-make recipes, food trends, and expert tips to enhance your culinary adventures.</p>
+            </div>
+            <img src="{% static 'images/image4.jpg' %}" alt="About Image">
+          
+        </div>
+        <div class="container">
+            <div class="left">
+                <h2>Our Passion for Food</h2>
+                    <p>Our Passion for Food  We are a team of food enthusiasts, home chefs, and flavor explorers dedicated to
+                        sharing mouthwatering recipes, insightful cooking guides, and food inspirations from around the world.
+                         Whether you're a beginner in the kitchen or a seasoned cook, we have something for everyone.</p>
+                </div>
+            <img src="{% static 'images/Recipes1.jpg' %}" alt="About Image">
+        </div>
+
+        <div class="container">
+            <div class="left">
+                <h2> Why Choose Us?</h2>
+                    <p✅> Authentic & Tested Recipes – Every recipe is crafted with care and tested for perfection
+                    ✅ Passion-Driven Content – We love what we do, and it shows in our content
+                    ✅ Community-First Approach – Join a growing community of food lovers
+                    </p>
+                </div>
+            <img src="{% static 'images/family.jpg' %}" alt="About Image">
+          
+        </div>
+        <div class="video-container">
+            <h1 style="margin-bottom: 5px;">Join Us on This Flavorful Journey!
+            </h1>
+            <video controls autoplay muted>
+                <source src="{% static 'video/sample.mp4' %}" type="video/mp4">
+        </div>
+    </section>
+    {% endblock %}
+</body>
+</html>
